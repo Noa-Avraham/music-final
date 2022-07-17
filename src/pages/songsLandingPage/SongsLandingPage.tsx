@@ -26,7 +26,7 @@ import { SongModel } from "../../songModel";
 
 export default function SongLandingPage(props: any) {
     const navigate = useNavigate();
-    let n=0;
+    let n = 0;
 
     let keys = Object.keys({ id: 123, title: "Avraham Fried", artist: "Keep Climbing", length: 4, price: 30, gener: "POP" })
 
@@ -45,37 +45,12 @@ export default function SongLandingPage(props: any) {
         props.search(artist)
     }
 
-    {/* <table>
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>artist</th>
-                        <th>title</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    
-                    {props.songs.map((s: { _id: number, artist: string, title: string }) => <tr>
-                        <td >
-                            <button id={(s._id).toString()} onClick={() => handleEditButton(s)}>edit</button>
-                            <button onClick={() => props.deleteButton(s._id)}>delete</button>
-                            {s._id}
-                        </td>
-                        <td>{s.artist}</td><td>{s.title}</td></tr>)}
-
-
-                </tbody>
-            </table> */}
 
     return (
         <>
 
             <h1 style={{ display: "", textAlign: 'center', fontSize: '60px', fontFamily: 'Cooper Black', color: 'purple' }}>The Song Shop</h1>
-            {/* <form>
-                <input type="text" name="search" placeholder="enter artist" onChange={(e) => setArtist(e.target.value)} ></input>
-                <button onClick={() => handleSearch()} type="submit">search</button>
-            </form> */}
+
             <Box
                 component="form"
                 sx={{ '& > :not(style)': { m: 1, width: '25ch' }, display: "inline", float: "top" }}
@@ -107,19 +82,15 @@ export default function SongLandingPage(props: any) {
                     <TableHead>
                         <TableRow>
                             <TableCell align="center"></TableCell>
-                            {Object.keys({...props.songs[0]}).map((key) => { return <TableCell key={n++} style={{ color: "purple", fontSize: "larger", fontWeight: "bold" }} align="center">{key}</TableCell> })}
+                            {Object.keys({ ...props.songs[0] }).map((key) => { return <TableCell key={n++} style={{ color: "purple", fontSize: "larger", fontWeight: "bold" }} align="center">{key}</TableCell> })}
 
-                            {/* {keys.map((key) => { return <TableCell align="center" style={{ color: "purple", fontSize: "larger", fontWeight: "bold" }}>{key}</TableCell> })} */}
 
-                            {/* <TableCell align="center" style={{ color: "purple", fontSize: "larger", fontWeight: "bold" }}>id</TableCell>
-                            <TableCell align="center" style={{ color: "purple", fontSize: "larger", fontWeight: "bold" }}>artist</TableCell>
-                            <TableCell align="center" style={{ color: "purple", fontSize: "larger", fontWeight: "bold" }}>title</TableCell> */}
                         </TableRow>
-                       
+
                     </TableHead>
                     <TableBody>
                         {props.songs.map((s: SongModel) => {
-                            // console.log(s);
+
                             return (
                                 <TableRow
                                     key={s.id}
@@ -133,7 +104,7 @@ export default function SongLandingPage(props: any) {
                                             <EditIcon fontSize="medium" style={{ color: "purple" }} onClick={() => handleEditButton(s)} />
                                         </IconButton>
                                     </TableCell>
-                                    {/* <TableCell component="th" scope="row" align="center">{s.id}</TableCell> */}
+
                                     {Object.entries(s).map(([key, val]) => { return <TableCell key={n++} align="center">{val}</TableCell> })}
 
 
