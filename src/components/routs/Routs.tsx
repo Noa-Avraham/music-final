@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import { SongModel } from "../../songModel";
 import axios from "axios";
 export default function Routs() {
-    
+
     // const navigate = useNavigate();
     // onload = () => { navigate("/songs") }
     const api = "http://localhost:8080/songs"
@@ -20,7 +20,7 @@ export default function Routs() {
 
     const addSong = async (newSong: SongModel) => {
         console.log(newSong)
-        // await axios.post(`${api}/add`, newSong).then(() => setSongs([...songs, newSong])).catch((error) => { console.log(error) })
+
         await axios.post(`${api}/add`, newSong).then(() => axios.get(`${api}/getAll`).then((res) => setSongs(res.data)).catch((error) => { console.log(error) })
         ).catch((error) => { console.log(error) })
 
@@ -29,12 +29,12 @@ export default function Routs() {
     const editSong = async (newSong: SongModel) => {
         console.log(newSong)
         await axios.put(`${api}/update/${newSong.id}`, newSong).then(() => {
-            // axios.get(`${api}/getById/${newSong.id}`).then((res) => setSongs([[...songs,songs[i] = newSong]]res.data)).catch((error) => { console.log(error) })
+
 
             for (let i = 0; i < songs.length; i++) {
                 if (songs[i].id == newSong.id) {
                     const copySong = [...songs];
-                    copySong[i] = {...newSong}
+                    copySong[i] = { ...newSong }
                     setSongs(copySong);
 
                 }
